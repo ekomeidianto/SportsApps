@@ -1,0 +1,5 @@
+line_length:
+  warning: 200
+
+disabled_rules:
+  - switch_case_alignment
