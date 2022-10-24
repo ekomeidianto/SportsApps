@@ -1,5 +1,5 @@
 language: swift
 osx_image: xcode14
 xcode_project: SportsApps.xcodeproj 
-xcode_scheme: SportsAppsTests
+xcode_scheme: SportsApps
 xcode_destination: platform=iOS Simulator,OS=16.0,name=iPhone 14 Pro
