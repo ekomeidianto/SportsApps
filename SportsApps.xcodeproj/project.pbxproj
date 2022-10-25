@@ -10,6 +10,10 @@
 		4120CCDF2906A6A700AA98C7 /* SportsAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4120CCDE2906A6A700AA98C7 /* SportsAppsTests.swift */; };
 		4120CCEC2906A72F00AA98C7 /* SportsAppsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4120CCEB2906A72F00AA98C7 /* SportsAppsUITests.swift */; };
 		4120CCEE2906A72F00AA98C7 /* SportsAppsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4120CCED2906A72F00AA98C7 /* SportsAppsUITestsLaunchTests.swift */; };
+		4120CD682907975700AA98C7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4120CD672907975700AA98C7 /* Alamofire */; };
+		4120CD6A2907975700AA98C7 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4120CD692907975700AA98C7 /* Realm */; };
+		4120CD6C2907975700AA98C7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4120CD6B2907975700AA98C7 /* RealmSwift */; };
+		4120CD6E2907975700AA98C7 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4120CD6D2907975700AA98C7 /* SDWebImageSwiftUI */; };
 		4157D92428FE8E4900204337 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4157D92328FE8E4900204337 /* AppDelegate.swift */; };
 		4157D92628FE8E4900204337 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4157D92528FE8E4900204337 /* SceneDelegate.swift */; };
 		4157D92B28FE8E4900204337 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4157D92928FE8E4900204337 /* Main.storyboard */; };
@@ -107,6 +111,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4120CD6E2907975700AA98C7 /* SDWebImageSwiftUI in Frameworks */,
+				4120CD6C2907975700AA98C7 /* RealmSwift in Frameworks */,
+				4120CD6A2907975700AA98C7 /* Realm in Frameworks */,
+				4120CD682907975700AA98C7 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +156,13 @@
 			path = SportsAppsUITests;
 			sourceTree = "<group>";
 		};
+		4120CD662907975700AA98C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4157D91728FE8E4900204337 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +171,7 @@
 				4120CCEA2906A72F00AA98C7 /* SportsAppsUITests */,
 				4157D92128FE8E4900204337 /* Products */,
 				4157D94C28FEACB400204337 /* .swiftlint.yml */,
+				4120CD662907975700AA98C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -463,6 +479,12 @@
 				4120CCE12906A6A700AA98C7 /* PBXTargetDependency */,
 			);
 			name = SportsAppsTests;
+			packageProductDependencies = (
+				4120CD672907975700AA98C7 /* Alamofire */,
+				4120CD692907975700AA98C7 /* Realm */,
+				4120CD6B2907975700AA98C7 /* RealmSwift */,
+				4120CD6D2907975700AA98C7 /* SDWebImageSwiftUI */,
+			);
 			productName = SportsAppsTests;
 			productReference = 4120CCDC2906A6A700AA98C7 /* SportsAppsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -996,6 +1018,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4120CD672907975700AA98C7 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4157D94728FEA72200204337 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		4120CD692907975700AA98C7 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4157D94D28FEB55B00204337 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		4120CD6B2907975700AA98C7 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4157D94D28FEB55B00204337 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		4120CD6D2907975700AA98C7 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4157D97628FF278C00204337 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		4157D94828FEA72200204337 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4157D94728FEA72200204337 /* XCRemoteSwiftPackageReference "Alamofire" */;
