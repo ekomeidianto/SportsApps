@@ -1,5 +1,5 @@
 language: swift
-osx_image: xcode14
+osx_image: xcode13.4
 xcode_project: SportsApps.xcodeproj 
 xcode_scheme: SportsApps
-xcode_destination: platform=iOS Simulator,OS=11.4,name=iPhone X
+xcode_destination: platform=iOS Simulator,OS=15.5,name=iPhone X
