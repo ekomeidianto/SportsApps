@@ -156,13 +156,6 @@
 			path = SportsAppsUITests;
 			sourceTree = "<group>";
 		};
-		4120CD662907975700AA98C7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		4157D91728FE8E4900204337 = {
 			isa = PBXGroup;
 			children = (
@@ -171,7 +164,6 @@
 				4120CCEA2906A72F00AA98C7 /* SportsAppsUITests */,
 				4157D92128FE8E4900204337 /* Products */,
 				4157D94C28FEACB400204337 /* .swiftlint.yml */,
-				4120CD662907975700AA98C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
