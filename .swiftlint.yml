@@ -3,3 +3,5 @@ line_length:
 
 disabled_rules:
   - switch_case_alignment
+  - force_cast
+  - force_try

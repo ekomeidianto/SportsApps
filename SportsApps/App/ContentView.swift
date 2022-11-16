@@ -6,9 +6,19 @@
 //
 
 import SwiftUI
+import Core
+import Team
 
 struct ContentView: View {
-  @EnvironmentObject var homePresenter: HomePresenter
+  @EnvironmentObject var homePresenter: GetListPresenter<
+    TeamEntities,
+    TeamDomainModel,
+    Interactor<
+      TeamEntities,
+      [TeamDomainModel],
+      TeamRepository<TeamLocaleDataSource, TeamRemoteDataSource, Transformer>
+    >
+  >
   @State var isActive: Bool = false
 
   var body: some View {

@@ -7,6 +7,8 @@
 
 import UIKit
 import SwiftUI
+import Core
+import Team
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,8 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-    let homeUseCase = Injector.init().provideHome()
-    let homePresenter = HomePresenter(homeUseCase: homeUseCase)
+    let teamUseCase: Interactor<TeamEntities, [TeamDomainModel], TeamRepository<TeamLocaleDataSource, TeamRemoteDataSource, Transformer>> = Injector.init().provideTeam()
+//    let homeUseCase = Injector.init().provideHome()
+//    let homePresenter = HomePresenter(homeUseCase: homeUseCase)
+    let homePresenter = GetListPresenter(useCase: teamUseCase)
 
     if let windowScene = scene as? UIWindowScene {
       let window = UIWindow(windowScene: windowScene)

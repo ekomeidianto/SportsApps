@@ -11,14 +11,12 @@ final class TeamMapper {
   static func mapTeamDomainToEntities(
     input teamResponses: TeamModel
   ) -> TeamEntity {
-//    return teamResponses.map { result in
-      let team = TeamEntity()
-      team.idTeam = teamResponses.teamId
-      team.strDescriptionEN = teamResponses.teamDesc
-      team.strTeam = teamResponses.teamName
-      team.strTeamBadge = teamResponses.teamLogo
-      return team
-//    }
+    let team = TeamEntity()
+    team.idTeam = teamResponses.teamId
+    team.strDescriptionEN = teamResponses.teamDesc
+    team.strTeam = teamResponses.teamName
+    team.strTeamBadge = teamResponses.teamLogo
+    return team
   }
 
   static func mapTeamEntitiesToDomains(

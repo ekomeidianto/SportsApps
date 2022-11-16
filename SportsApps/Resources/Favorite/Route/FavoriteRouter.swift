@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import Team
+import Core
 
 class FavoriteRouter {
-  func goToDetailView(for team: TeamModel) -> some View {
-    let detailUseCase = Injector.init().provideDetail(team: team)
-    let detailPresenter = DetailPresenter(detailUseCase: detailUseCase, teams: team)
-    return DetailView(detailPresenter: detailPresenter)
+  func goToDetailView(for team: TeamDomainModel) -> some View {
+    let detailUseCase: Interactor<
+      TeamEntities,
+      [TeamDomainModel],
+      TeamRepository<TeamLocaleDataSource, TeamRemoteDataSource, Transformer>
+    > = Injector.init().provideTeam()
+    let detailPresenter = DetailsPresenter(useCase: detailUseCase, team: team)
+    return DetailView(detailPresenter: detailPresenter, teams: team)
   }
 }

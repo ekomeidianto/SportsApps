@@ -36,12 +36,12 @@ class FavoritePresenter: ObservableObject {
       .store(in: &cancellables)
   }
 
-  func navigateToDetail<Content: View>(
-    for team: TeamModel,
-    @ViewBuilder content: () -> Content
-  ) -> some View {
-    NavigationLink(destination: router.goToDetailView(for: team)) {
-      content()
-    }
-  }
+//  func navigateToDetail<Content: View>(
+//    for team: TeamModel,
+//    @ViewBuilder content: () -> Content
+//  ) -> some View {
+//    NavigationLink(destination: router.goToDetailView(for: team)) {
+//      content()
+//    }
+//  }
 }

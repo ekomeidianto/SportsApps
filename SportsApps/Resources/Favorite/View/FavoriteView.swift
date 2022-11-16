@@ -7,43 +7,47 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Core
+import Team
 
 struct FavoriteView: View {
-  @StateObject var favoritePresenter: FavoritePresenter
-
-  init(favoritePresenter: FavoritePresenter) {
-    _favoritePresenter = StateObject(wrappedValue: favoritePresenter)
-  }
+  @ObservedObject var favoritePresenter: GetListPresenter<
+    TeamEntities,
+    TeamDomainModel,
+    Interactor<TeamEntities, [TeamDomainModel], TeamRepository<
+      TeamLocaleDataSource,
+      TeamRemoteDataSource,
+      Transformer>>>
 
   var body: some View {
     VStack {
       if favoritePresenter.isLoading {
         ProgressView()
+      } else if favoritePresenter.list.isEmpty {
+        Text("There aren't Favorite Teams")
+          .font(.title3)
+          .bold()
+          .foregroundColor(.black)
+      } else if favoritePresenter.isError {
+        EmptyView()
       } else {
-        if favoritePresenter.teams.isEmpty {
-          Text("There aren't Favorite Teams")
-            .font(.title3)
-            .bold()
-            .foregroundColor(.black)
-        } else {
-          ScrollView(.vertical, showsIndicators: false) {
-            ForEach(favoritePresenter.teams) { team in
-              favoritePresenter.navigateToDetail(for: team) {
-                VStack(spacing: 15) {
-                  imageView(image: team.teamLogo)
-                  desc(item: team)
-                }
-                .frame(width: UIScreen.main.bounds.width - 35, height: 250)
-                .background(Color.random.opacity(0.3))
-                .cornerRadius(35)
+        ScrollView(.vertical, showsIndicators: false) {
+          ForEach(favoritePresenter.list) { team in
+            navigateToDetail(for: team) {
+              VStack(spacing: 15) {
+                imageView(image: team.teamLogo)
+                desc(item: team)
               }
+              .frame(width: UIScreen.main.bounds.width - 35, height: 250)
+              .background(Color.random.opacity(0.3))
+              .cornerRadius(35)
             }
           }
         }
       }
     }
     .onAppear(perform: {
-      self.favoritePresenter.getTeams()
+      favoritePresenter.getListLocale(request: nil)
     })
     .navigationTitle("Favorite Teams")
   }
@@ -59,7 +63,7 @@ struct FavoriteView: View {
       .padding(.top)
   }
 
-  private func desc(item: TeamModel) -> some View {
+  private func desc(item: TeamDomainModel) -> some View {
     VStack(alignment: .leading) {
       Text(item.teamName)
         .font(.title)
@@ -80,5 +84,14 @@ struct FavoriteView: View {
         trailing: 15
       )
     )
+  }
+
+  private func navigateToDetail<Content: View>(
+    for team: TeamDomainModel,
+    @ViewBuilder content: () -> Content
+  ) -> some View {
+    NavigationLink(destination: FavoriteRouter().goToDetailView(for: team)) {
+      content()
+    }
   }
 }

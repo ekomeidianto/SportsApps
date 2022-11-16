@@ -36,24 +36,24 @@ class HomePresenter: ObservableObject {
       .store(in: &cancellables)
   }
 
-  func navigateToDetail<Content: View>(
-    for team: TeamModel,
-    @ViewBuilder content: () -> Content
-  ) -> some View {
-    NavigationLink(destination: router.goToDetailView(for: team)) {
-      content()
-    }
-  }
-
-  func navigateToProfile<Content: View>(@ViewBuilder content: () -> Content) -> some View {
-    NavigationLink(destination: router.goToProfile) {
-      content()
-    }
-  }
-
-  func navigateToFavorite<Content: View>(@ViewBuilder content: () -> Content) -> some View {
-    NavigationLink(destination: router.goToFavorite) {
-      content()
-    }
-  }
+//  func navigateToDetail<Content: View>(
+//    for team: TeamModel,
+//    @ViewBuilder content: () -> Content
+//  ) -> some View {
+//    NavigationLink(destination: router.goToDetailView(for: team)) {
+//      content()
+//    }
+//  }
+//
+//  func navigateToProfile<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+//    NavigationLink(destination: router.goToProfile) {
+//      content()
+//    }
+//  }
+//
+//  func navigateToFavorite<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+//    NavigationLink(destination: router.goToFavorite) {
+//      content()
+//    }
+//  }
 }

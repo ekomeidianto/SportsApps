@@ -7,6 +7,9 @@
 
 import Foundation
 import RealmSwift
+import Core
+import Team
+import UIKit
 
 final class Injector: NSObject {
 
@@ -32,6 +35,15 @@ final class Injector: NSObject {
   func provideFavorite() -> FavoriteUseCase {
     let repository = provideRepository()
     return FavoriteUseCaseImpl(repository: repository)
+  }
+
+  func provideTeam<U: UseCase>() -> U where U.Request == TeamEntities, U.Response == [TeamDomainModel] {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let locale = TeamLocaleDataSource(realm: appDelegate.realm)
+    let remote = TeamRemoteDataSource(endpoint: Methods.Get.getTeam.url)
+    let mapper = Transformer()
+    let reposytory = TeamRepository(localeDataSource: locale, remoteDataSource: remote, mapper: mapper)
+    return Interactor(repository: reposytory) as! U
   }
 
 }

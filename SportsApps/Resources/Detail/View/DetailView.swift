@@ -7,13 +7,19 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Team
+import Core
 
 struct DetailView: View {
-  @StateObject var detailPresenter: DetailPresenter
+  @ObservedObject var detailPresenter: DetailsPresenter<
+    TeamEntities,
+    TeamDomainModel,
+    Interactor<
+      TeamEntities,
+      [TeamDomainModel],
+      TeamRepository<TeamLocaleDataSource, TeamRemoteDataSource, Transformer>>>
 
-  init(detailPresenter: DetailPresenter) {
-    _detailPresenter = StateObject(wrappedValue: detailPresenter)
-  }
+  var teams: TeamDomainModel
 
   var body: some View {
     ScrollView(.vertical, showsIndicators: false) {
@@ -21,17 +27,25 @@ struct DetailView: View {
       description
     }
     .frame(width: UIScreen.main.bounds.width - 30)
-    .navigationTitle(detailPresenter.teams.teamName)
+    .navigationTitle(teams.teamName)
     .navigationBarTitleDisplayMode(.inline)
     .onAppear(perform: {
-      self.detailPresenter.getTeamsFavorite()
+      detailPresenter.getListLocale {
+        if !detailPresenter.list.isEmpty {
+          if detailPresenter.list.contains(where: { $0.teamName == teams.teamName }) {
+            detailPresenter.isFavorite = true
+          } else {
+            detailPresenter.isFavorite = false
+          }
+        }
+      }
     })
     .toolbar {
       Button {
         if detailPresenter.isFavorite {
-          detailPresenter.deleteFromFavorite()
+          detailPresenter.deleteFromFavorite(request: Transformer().transformTeamDomainToEntities(response: [teams])[0])
         } else {
-          detailPresenter.addToFavorite()
+          detailPresenter.addToFavorite(request: Transformer().transformTeamDomainToEntities(response: [teams])[0])
         }
       } label: {
         if detailPresenter.isFavorite {
@@ -47,7 +61,7 @@ struct DetailView: View {
   }
 
   var imageView: some View {
-    WebImage(url: URL(string: detailPresenter.teams.teamLogo))
+    WebImage(url: URL(string: detailPresenter.team.teamLogo))
       .resizable()
       .indicator(.activity)
       .transition(.fade(duration: 0.5))
@@ -62,7 +76,7 @@ struct DetailView: View {
         .bold()
         .padding(.vertical)
 
-      Text(detailPresenter.teams.teamDesc)
+      Text(detailPresenter.team.teamDesc)
         .font(.system(size: 15))
     }
   }
